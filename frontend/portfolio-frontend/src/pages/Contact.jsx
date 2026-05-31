@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "../styles/Contact.css";
 
+const API = "https://portfolio-project-backend-oqvk.onrender.com";
+
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,10 +22,7 @@ function Contact() {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/contact",
-        formData
-      );
+      await axios.post(`${API}/api/contact`, formData);
 
       alert("Message Sent Successfully!");
 
@@ -45,10 +44,7 @@ function Contact() {
 
         <h1>Contact Me</h1>
 
-        <form
-          className="contact-form"
-          onSubmit={handleSubmit}
-        >
+        <form className="contact-form" onSubmit={handleSubmit}>
 
           <input
             type="text"

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/Projects.css";
 
+const API = "https://portfolio-project-backend-oqvk.onrender.com";
+
 function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/projects")
+      .get(`${API}/api/projects`)
       .then((res) => {
         setProjects(res.data);
       })
@@ -25,14 +27,11 @@ function Projects() {
         <div className="projects-grid">
 
           {projects.length === 0 ? (
-            <p className="no-projects">
-              No Projects Available
-            </p>
+            <p className="no-projects">No Projects Available</p>
           ) : (
             projects.map((project) => (
               <div className="project-card" key={project._id}>
                 <h2>{project.title}</h2>
-
                 <p>{project.description}</p>
               </div>
             ))
